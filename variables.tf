@@ -22,22 +22,6 @@ EOT
   validation {
     condition = alltrue([
       for k, v in var.digital_twins_endpoint_eventgrids : (
-        length(v.name) >= 3
-      )
-    ])
-    error_message = "[from validate.DigitalTwinsInstanceName: invalid when len(value) < 3]"
-  }
-  validation {
-    condition = alltrue([
-      for k, v in var.digital_twins_endpoint_eventgrids : (
-        length(v.name) <= 63
-      )
-    ])
-    error_message = "[from validate.DigitalTwinsInstanceName: invalid when len(value) > 63]"
-  }
-  validation {
-    condition = alltrue([
-      for k, v in var.digital_twins_endpoint_eventgrids : (
         length(v.eventgrid_topic_primary_access_key) > 0
       )
     ])
@@ -59,6 +43,6 @@ EOT
     ])
     error_message = "must not be empty"
   }
-  # Note: 5 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
+  # Note: 4 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
